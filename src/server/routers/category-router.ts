@@ -5,7 +5,6 @@ import { startOfDay, startOfMonth, startOfWeek } from "date-fns"
 import { z } from "zod"
 import { CATEGORY_NAME_VALIDATOR } from "@/lib/validators/category-validator"
 import { parseColor } from "@/utils"
-import { CarTaxiFront } from "lucide-react"
 import { HTTPException } from "hono/http-exception"
 import { FREE_QUOTA, PRO_QUOTA } from "@/config"
 
