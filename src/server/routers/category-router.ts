@@ -6,7 +6,7 @@ import { z } from "zod"
 import { CATEGORY_NAME_VALIDATOR } from "@/lib/validators/category-validator"
 import { parseColor } from "@/utils"
 import { HTTPException } from "hono/http-exception"
-import { FREE_QUOTA, PRO_QUOTA } from "@/config"
+// import { FREE_QUOTA, PRO_QUOTA } from "@/config"
 
 export const categoryRouter = router({
   getEventCategories: privateProcedure.query(async ({ c, ctx }) => {
@@ -113,30 +113,30 @@ export const categoryRouter = router({
 
       // TODO: ADD PAID PLAN LOGIC
 
-      const eventCategoryCount = await db.eventCategory.count({
-        where: {
-          userId: user.id,
-        },
-      })
+      // const eventCategoryCount = await db.eventCategory.count({
+      //   where: {
+      //     userId: user.id,
+      //   },
+      // })
 
-      if (
-        user.plan === "FREE" &&
-        eventCategoryCount >= FREE_QUOTA.maxEventCategories
-      ) {
-        return c.json({
-          message: "Event category creation free quota reached",
-        })
-      }
+      // if (
+      //   user.plan === "FREE" &&
+      //   eventCategoryCount >= FREE_QUOTA.maxEventCategories
+      // ) {
+      //   return c.json({
+      //     message: "Event category creation free quota reached",
+      //   })
+      // }
 
-      if (
-        user.plan === "PRO" &&
-        eventCategoryCount >= PRO_QUOTA.maxEventCategories
-      ) {
-        return c.json({
-          eventCategory: {},
-          message: "Event category creation pro quota reached",
-        })
-      }
+      // if (
+      //   user.plan === "PRO" &&
+      //   eventCategoryCount >= PRO_QUOTA.maxEventCategories
+      // ) {
+      //   return c.json({
+      //     eventCategory: {},
+      //     message: "Event category creation pro quota reached",
+      //   })
+      // }
 
       const eventCategory = await db.eventCategory.create({
         data: {
