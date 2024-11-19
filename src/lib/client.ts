@@ -5,11 +5,15 @@ import { StatusCode } from "hono/utils/http-status"
 import superjson from "superjson"
 
 const getBaseUrl = () => {
+  // browser should use relative path
+  if (typeof window !== "undefined") {
+    return ""
+  }
+
   return process.env.NODE_ENV === "development"
     ? "http://localhost:3000/"
-    : typeof process.env.VERCEL_URL !== "undefined" &&
-      process.env.VERCEL_URL !== ""
-    ? `https://${process.env.VERCEL_URL}`
+    : process.env.VERCEL_URL
+    ? process.env.VERCEL_URL
     : "http://localhost:3000/"
 }
 
