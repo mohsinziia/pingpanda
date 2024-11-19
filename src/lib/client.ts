@@ -7,7 +7,8 @@ import superjson from "superjson"
 const getBaseUrl = () => {
   return process.env.NODE_ENV === "development"
     ? "http://localhost:3000/"
-    : process.env.VERCEL_URL
+    : typeof process.env.VERCEL_URL !== "undefined" &&
+      process.env.VERCEL_URL !== ""
     ? `https://${process.env.VERCEL_URL}`
     : "http://localhost:3000/"
 }
